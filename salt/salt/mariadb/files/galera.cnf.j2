@@ -1,0 +1,24 @@
+{% set db_servers = salt['pillar.get']('senec:mariadb:db_servers') %}
+[mysqld]
+bind-address = 0.0.0.0
+default_storage_engine = InnoDB
+innodb_autoinc_lock_mode = 2
+binlog_format = ROW
+query_cache_size = 0
+query_cache_type = 0
+
+# Galera settings
+wsrep_on = ON
+wsrep_provider = /usr/lib/galera/libgalera_smm.so
+wsrep_cluster_address = "gcomm://{{ db_servers |join(',') }}"
+wsrep_cluster_name = "MariaDB_Cluster"
+wsrep_sst_method = rsync
+wsrep_sst_auth = "{{ user }}:{{ password }}"
+wsrep_node_address = "{{ grains['ipv4'][0] }}"
+wsrep_node_name = "{{ grains['fqdn'] }}"
+
+# Allow large transactions
+innodb_flush_log_at_trx_commit = 2
+innodb_buffer_pool_size = 512M
+innodb_log_file_size = 64M
+

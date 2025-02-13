@@ -1,0 +1,30 @@
+{% set config = salt['pillar.get']('senec:wordpress') %}
+{% set random = salt["cmd.run"]("openssl rand -base64 32") %}
+
+<?php
+define('DB_NAME', '{{ config.db_name }}');
+define('DB_USER', '{{ config.db_user }}');
+define('DB_PASSWORD', '{{ config.db_password }}');
+define('DB_HOST', '{{ config.db_host }}');
+define('DB_CHARSET', 'utf8mb4');
+define('DB_COLLATE', '');
+
+define('AUTH_KEY', '{{ random }}');
+define('SECURE_AUTH_KEY', '{{ random }}');
+define('LOGGED_IN_KEY', '{{ random }}');
+define('NONCE_KEY', '{{ random }}');
+define('AUTH_SALT', '{{ random }}');
+define('SECURE_AUTH_SALT', '{{ random }}');
+define('LOGGED_IN_SALT', '{{ random }}');
+define('NONCE_SALT', '{{ random }}');
+define('WP_HOME','https://{{ domain }}/');
+define('WP_SITEURL','https://{{ domain }}/');
+//
+define('FORCE_SSL_ADMIN', true);
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
+    $_SERVER['HTTPS'] = 'on';
+//
+$table_prefix = 'wp_';
+define('WP_DEBUG', true);
+if (!defined('ABSPATH')) define('ABSPATH', dirname(__FILE__) . '/');
+require_once ABSPATH . 'wp-settings.php';

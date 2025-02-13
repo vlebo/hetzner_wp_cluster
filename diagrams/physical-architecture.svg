@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+  <!-- Background -->
+  <rect width="1000" height="500" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="500" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Physical Deployment Architecture</text>
+  
+  <!-- Load Balancer Server -->
+  <rect x="50" y="80" width="200" height="300" rx="5" fill="#f5f5f5" stroke="#666"/>
+  <text x="150" y="110" font-family="Arial" font-size="18" fill="#333" text-anchor="middle">LB Server</text>
+  
+  <!-- LB Components -->
+  <rect x="70" y="130" width="160" height="60" rx="5" fill="#2c3e50"/>
+  <text x="150" y="165" font-family="Arial" font-size="16" fill="white" text-anchor="middle">HAProxy</text>
+  <text x="150" y="185" font-family="Arial" font-size="12" fill="white" text-anchor="middle">SSL Termination</text>
+  
+  <!-- Web/DB Servers -->
+  <rect x="300" y="80" width="200" height="300" rx="5" fill="#f5f5f5" stroke="#666"/>
+  <text x="400" y="110" font-family="Arial" font-size="18" fill="#333" text-anchor="middle">Web1/DB1 Server</text>
+  
+  <rect x="550" y="80" width="200" height="300" rx="5" fill="#f5f5f5" stroke="#666"/>
+  <text x="650" y="110" font-family="Arial" font-size="18" fill="#333" text-anchor="middle">Web2/DB2 Server</text>
+  
+  <rect x="800" y="80" width="200" height="300" rx="5" fill="#f5f5f5" stroke="#666"/>
+  <text x="900" y="110" font-family="Arial" font-size="18" fill="#333" text-anchor="middle">Web3/DB3 Server</text>
+  
+  <!-- Connection lines from HAProxy -->
+  <line x1="230" y1="160" x2="290" y2="160" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="230" y1="160" x2="540" y2="160" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="230" y1="160" x2="790" y2="160" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Components in Web1/DB1 -->
+  <rect x="320" y="130" width="160" height="60" rx="5" fill="#3498db"/>
+  <text x="400" y="160" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Nginx + PHP-FPM</text>
+  <text x="400" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">WordPress</text>
+  
+  <rect x="320" y="200" width="160" height="60" rx="5" fill="#e67e22"/>
+  <text x="400" y="230" font-family="Arial" font-size="14" fill="white" text-anchor="middle">GlusterFS Node</text>
+  <text x="400" y="250" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Shared Storage</text>
+  
+  <rect x="320" y="270" width="160" height="60" rx="5" fill="#27ae60"/>
+  <text x="400" y="300" font-family="Arial" font-size="14" fill="white" text-anchor="middle">MariaDB</text>
+  <text x="400" y="320" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Galera Node</text>
+  
+  <!-- Components in Web2/DB2 -->
+  <rect x="570" y="130" width="160" height="60" rx="5" fill="#3498db"/>
+  <text x="650" y="160" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Nginx + PHP-FPM</text>
+  <text x="650" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">WordPress</text>
+  
+  <rect x="570" y="200" width="160" height="60" rx="5" fill="#e67e22"/>
+  <text x="650" y="230" font-family="Arial" font-size="14" fill="white" text-anchor="middle">GlusterFS Node</text>
+  <text x="650" y="250" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Shared Storage</text>
+  
+  <rect x="570" y="270" width="160" height="60" rx="5" fill="#27ae60"/>
+  <text x="650" y="300" font-family="Arial" font-size="14" fill="white" text-anchor="middle">MariaDB</text>
+  <text x="650" y="320" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Galera Node</text>
+  
+  <!-- Components in Web3/DB3 -->
+  <rect x="820" y="130" width="160" height="60" rx="5" fill="#3498db"/>
+  <text x="900" y="160" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Nginx + PHP-FPM</text>
+  <text x="900" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">WordPress</text>
+  
+  <rect x="820" y="200" width="160" height="60" rx="5" fill="#e67e22"/>
+  <text x="900" y="230" font-family="Arial" font-size="14" fill="white" text-anchor="middle">GlusterFS Node</text>
+  <text x="900" y="250" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Shared Storage</text>
+  
+  <rect x="820" y="270" width="160" height="60" rx="5" fill="#27ae60"/>
+  <text x="900" y="300" font-family="Arial" font-size="14" fill="white" text-anchor="middle">MariaDB</text>
+  <text x="900" y="320" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Galera Node</text>
+  
+  <!-- Cluster Connections -->
+  <line x1="480" y1="230" x2="570" y2="230" stroke="#e67e22" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="730" y1="230" x2="820" y2="230" stroke="#e67e22" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <line x1="480" y1="300" x2="570" y2="300" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="730" y1="300" x2="820" y2="300" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Legend -->
+  <rect x="50" y="420" width="20" height="20" fill="#2c3e50"/>
+  <text x="80" y="435" font-family="Arial" font-size="12" fill="#333">Load Balancer</text>
+  
+  <rect x="200" y="420" width="20" height="20" fill="#3498db"/>
+  <text x="230" y="435" font-family="Arial" font-size="12" fill="#333">Web Server</text>
+  
+  <rect x="350" y="420" width="20" height="20" fill="#e67e22"/>
+  <text x="380" y="435" font-family="Arial" font-size="12" fill="#333">Storage Layer</text>
+  
+  <rect x="500" y="420" width="20" height="20" fill="#27ae60"/>
+  <text x="530" y="435" font-family="Arial" font-size="12" fill="#333">Database Layer</text>
+  
+  <line x1="650" y1="430" x2="700" y2="430" stroke="#666" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="730" y="435" font-family="Arial" font-size="12" fill="#333">Cluster Link</text>
+</svg>

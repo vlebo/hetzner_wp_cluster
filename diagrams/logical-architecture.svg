@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">WordPress High-Availability Cluster</text>
+  
+  <!-- Load Balancer -->
+  <rect x="300" y="80" width="200" height="60" rx="5" fill="#2c3e50"/>
+  <text x="400" y="115" font-family="Arial" font-size="16" fill="white" text-anchor="middle">HAProxy Load Balancer</text>
+  <text x="400" y="135" font-family="Arial" font-size="12" fill="white" text-anchor="middle">SSL Termination</text>
+  
+  <!-- Connection lines from LB to Web servers -->
+  <line x1="400" y1="140" x2="400" y2="180" stroke="#666" stroke-width="2"/>
+  <line x1="400" y1="180" x2="200" y2="180" stroke="#666" stroke-width="2"/>
+  <line x1="400" y1="180" x2="600" y2="180" stroke="#666" stroke-width="2"/>
+  <line x1="200" y1="180" x2="200" y2="200" stroke="#666" stroke-width="2"/>
+  <line x1="400" y1="180" x2="400" y2="200" stroke="#666" stroke-width="2"/>
+  <line x1="600" y1="180" x2="600" y2="200" stroke="#666" stroke-width="2"/>
+  
+  <!-- Web Servers -->
+  <rect x="100" y="200" width="200" height="80" rx="5" fill="#3498db"/>
+  <text x="200" y="235" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Web1/Nginx</text>
+  <text x="200" y="255" font-family="Arial" font-size="12" fill="white" text-anchor="middle">WordPress + PHP-FPM</text>
+  
+  <rect x="300" y="200" width="200" height="80" rx="5" fill="#3498db"/>
+  <text x="400" y="235" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Web2/Nginx</text>
+  <text x="400" y="255" font-family="Arial" font-size="12" fill="white" text-anchor="middle">WordPress + PHP-FPM</text>
+  
+  <rect x="500" y="200" width="200" height="80" rx="5" fill="#3498db"/>
+  <text x="600" y="235" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Web3/Nginx</text>
+  <text x="600" y="255" font-family="Arial" font-size="12" fill="white" text-anchor="middle">WordPress + PHP-FPM</text>
+  
+  <!-- Connection lines from Web servers to Storage -->
+  <line x1="200" y1="280" x2="200" y2="320" stroke="#666" stroke-width="2"/>
+  <line x1="400" y1="280" x2="400" y2="320" stroke="#666" stroke-width="2"/>
+  <line x1="600" y1="280" x2="600" y2="320" stroke="#666" stroke-width="2"/>
+  
+  <!-- Shared Storage -->
+  <rect x="100" y="320" width="200" height="80" rx="5" fill="#e67e22"/>
+  <text x="200" y="355" font-family="Arial" font-size="16" fill="white" text-anchor="middle">GlusterFS Node1</text>
+  <text x="200" y="375" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Replicated Storage</text>
+  
+  <rect x="300" y="320" width="200" height="80" rx="5" fill="#e67e22"/>
+  <text x="400" y="355" font-family="Arial" font-size="16" fill="white" text-anchor="middle">GlusterFS Node2</text>
+  <text x="400" y="375" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Replicated Storage</text>
+  
+  <rect x="500" y="320" width="200" height="80" rx="5" fill="#e67e22"/>
+  <text x="600" y="355" font-family="Arial" font-size="16" fill="white" text-anchor="middle">GlusterFS Node3</text>
+  <text x="600" y="375" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Replicated Storage</text>
+  
+  <!-- Connection lines from Storage to Database -->
+  <line x1="200" y1="400" x2="200" y2="440" stroke="#666" stroke-width="2"/>
+  <line x1="400" y1="400" x2="400" y2="440" stroke="#666" stroke-width="2"/>
+  <line x1="600" y1="400" x2="600" y2="440" stroke="#666" stroke-width="2"/>
+  
+  <!-- Database Servers -->
+  <rect x="100" y="440" width="200" height="80" rx="5" fill="#27ae60"/>
+  <text x="200" y="475" font-family="Arial" font-size="16" fill="white" text-anchor="middle">MariaDB Node1</text>
+  <text x="200" y="495" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Galera Cluster</text>
+  
+  <rect x="300" y="440" width="200" height="80" rx="5" fill="#27ae60"/>
+  <text x="400" y="475" font-family="Arial" font-size="16" fill="white" text-anchor="middle">MariaDB Node2</text>
+  <text x="400" y="495" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Galera Cluster</text>
+  
+  <rect x="500" y="440" width="200" height="80" rx="5" fill="#27ae60"/>
+  <text x="600" y="475" font-family="Arial" font-size="16" fill="white" text-anchor="middle">MariaDB Node3</text>
+  <text x="600" y="495" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Galera Cluster</text>
+  
+  <!-- Database interconnection lines -->
+  <line x1="200" y1="520" x2="400" y2="520" stroke="#666" stroke-width="2"/>
+  <line x1="400" y1="520" x2="600" y2="520" stroke="#666" stroke-width="2"/>
+  
+  <!-- Legend -->
+  <rect x="50" y="540" width="20" height="20" fill="#2c3e50"/>
+  <text x="80" y="555" font-family="Arial" font-size="12" fill="#333">Load Balancer</text>
+  
+  <rect x="200" y="540" width="20" height="20" fill="#3498db"/>
+  <text x="230" y="555" font-family="Arial" font-size="12" fill="#333">Web Servers</text>
+  
+  <rect x="350" y="540" width="20" height="20" fill="#e67e22"/>
+  <text x="380" y="555" font-family="Arial" font-size="12" fill="#333">Storage Layer</text>
+  
+  <rect x="500" y="540" width="20" height="20" fill="#27ae60"/>
+  <text x="530" y="555" font-family="Arial" font-size="12" fill="#333">Database Layer</text>
+</svg>
