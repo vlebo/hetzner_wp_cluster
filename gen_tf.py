@@ -25,6 +25,7 @@ def generate_tfvars(pillar_data):
         'network_name': infra['network_name'],
         'network_cidr': infra['network_cidr'],
         'ssh_public_keys': infra['ssh_public_keys'],
+	'firewall_rules': infra['firewall_rules']
     })
 
     # Generate servers map
@@ -42,9 +43,6 @@ def generate_tfvars(pillar_data):
     }
     tf_vars['servers'] = servers
 
-    # Add firewall rules
-    tf_vars['firewall_rules'] = infra['firewall_rules']
-    
     return tf_vars
 
 def write_tfvars(tf_vars, output_path):
