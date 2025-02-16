@@ -32,6 +32,9 @@ help: ## Show this help.
 	@echo "$(GREEN)Available commands:$(NC)"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "$(YELLOW)%-20s$(NC) | %s\n", $$1, $$2}'
 
+gentf: ## Generate terraform.tfvars file
+	$(HIDE) ./gen_tf.py salt/pillar/senec.sls
+
 plan: ## Run terraform plan
 	$(SHOW) "${GREEN}Running terraform plan...${NC}"
 	$(HIDE)cd $(TERRAFORM_DIR) && terraform init
