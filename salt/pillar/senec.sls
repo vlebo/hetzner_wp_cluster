@@ -43,7 +43,7 @@ senec:
     mounted_volumes_path: /var/www/
     web_user: www-data
     web_servers: ['web1', 'web2', 'web3']
-    domain: wp.fpng.in
+    domain: wordpress-vl.senecops.com
     email: admin@mywebsite.com
   gluster:
     client_pkg: glusterfs-client
