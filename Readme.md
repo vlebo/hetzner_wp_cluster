@@ -127,6 +127,7 @@ The physical architecture shows the actual deployment across the four servers, i
 ├── diagrams
 │ ├── logical-architecture.svg
 │ └── physical-architecture.svg
+├── gen_tf.py
 ├── Makefile
 ├── Readme.md
 ├── salt
@@ -185,133 +186,35 @@ The physical architecture shows the actual deployment across the four servers, i
 │         │ └── wp-config.php.j2
 │         ├── finalize.sls
 │         └── install.sls
-├── terraform
-│ ├── environments
-│ │ └── test
-│ │     ├── main.tf
-│ │     ├── outputs.tf
-│ │     ├── provider.tf
-│ │     ├── terraform.tfstate
-│ │     ├── terraform.tfstate.backup
-│ │     ├── terraform.tfvars
-│ │     └── variables.tf
-│ └── modules
-│     ├── firewall
-│     │ ├── main.tf
-│     │ ├── outputs.tf
-│     │ ├── provider.tf
-│     │ └── variables.tf
-│     ├── network
-│     │ ├── main.tf
-│     │ ├── outputs.tf
-│     │ ├── provider.tf
-│     │ └── variables.tf
-│     ├── server
-│     │ ├── cloud-init.tpl
-│     │ ├── main.tf
-│     │ ├── outputs.tf
-│     │ ├── provider.tf
-│     │ └── variables.tf
-│     └── volume
-│         ├── main.tf
-│         ├── outputs.tf
-│         ├── provider.tf
-│         └── variables.tf
-└── test_task
-    ├── diagrams
-    │ ├── logical-architecture.svg
-    │ └── physical-architecture.svg
-    ├── Makefile
-    ├── Readme.md
-    ├── salt
-    │ ├── pillar
-    │ │ ├── senec.sls
-    │ │ └── top.sls
-    │ ├── salt
-    │ │ ├── common.sls
-    │ │ ├── enable_salt_mine
-    │ │ │ └── init.sls
-    │ │ ├── gluster
-    │ │ │ ├── create_volume.sls
-    │ │ │ ├── install.sls
-    │ │ │ ├── mount.sls
-    │ │ │ └── peer.sls
-    │ │ ├── haproxy
-    │ │ │ ├── config.sls
-    │ │ │ ├── deploy_ssl.sls
-    │ │ │ ├── files
-    │ │ │ │ └── haproxy.cfg.j2
-    │ │ │ ├── init.sls
-    │ │ │ └── install.sls
-    │ │ ├── mariadb
-    │ │ │ ├── backup.sls
-    │ │ │ ├── bootstrap.sls
-    │ │ │ ├── files
-    │ │ │ │ └── galera.cnf.j2
-    │ │ │ ├── firewall.sls
-    │ │ │ ├── galera.sls
-    │ │ │ ├── install.sls
-    │ │ │ ├── secure_root.sls
-    │ │ │ ├── service.sls
-    │ │ │ └── status.sls
-    │ │ ├── mount_volumes
-    │ │ │ └── init.sls
-    │ │ ├── nginx
-    │ │ │ ├── config.sls
-    │ │ │ ├── files
-    │ │ │ │ └── wordpress.conf.j2
-    │ │ │ ├── init.sls
-    │ │ │ └── install.sls
-    │ │ ├── orch
-    │ │ │ └── deploy.sls
-    │ │ ├── ssl
-    │ │ │ └── init.sls
-    │ │ ├── top.sls
-    │ │ ├── update_hosts
-    │ │ │ └── init.sls
-    │ │ └── wordpress
-    │ │     ├── cli.sls
-    │ │     ├── config.sls
-    │ │     ├── db.sls
-    │ │     ├── deps.sls
-    │ │     ├── download.sls
-    │ │     ├── files
-    │ │     │ └── wp-config.php.j2
-    │ │     ├── finalize.sls
-    │ │     └── install.sls
-    │ └── sftp-config.json
-    └── terraform
-        ├── environments
-        │ └── test
-        │     ├── main.tf
-        │     ├── outputs.tf
-        │     ├── provider.tf
-        │     ├── terraform.tfstate
-        │     ├── terraform.tfstate.backup
-        │     ├── terraform.tfvars
-        │     └── variables.tf
-        └── modules
-            ├── firewall
-            │ ├── main.tf
-            │ ├── outputs.tf
-            │ ├── provider.tf
-            │ └── variables.tf
-            ├── network
-            │ ├── main.tf
-            │ ├── outputs.tf
-            │ ├── provider.tf
-            │ └── variables.tf
-            ├── server
-            │ ├── cloud-init.tpl
-            │ ├── main.tf
-            │ ├── outputs.tf
-            │ ├── provider.tf
-            │ └── variables.tf
-            └── volume
-                ├── main.tf
-                ├── outputs.tf
-                ├── provider.tf
-                └── variables.tf
+└── terraform
+    ├── environments
+    │ └── test
+    │     ├── main.tf
+    │     ├── outputs.tf
+    │     ├── provider.tf
+    │     └── variables.tf
+    └── modules
+        ├── firewall
+        │ ├── main.tf
+        │ ├── outputs.tf
+        │ ├── provider.tf
+        │ └── variables.tf
+        ├── network
+        │ ├── main.tf
+        │ ├── outputs.tf
+        │ ├── provider.tf
+        │ └── variables.tf
+        ├── server
+        │ ├── cloud-init.tpl
+        │ ├── main.tf
+        │ ├── outputs.tf
+        │ ├── provider.tf
+        │ └── variables.tf
+        └── volume
+            ├── main.tf
+            ├── outputs.tf
+            ├── provider.tf
+            └── variables.tf
 
 ```
 
