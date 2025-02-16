@@ -319,7 +319,12 @@ The physical architecture shows the actual deployment across the four servers, i
 
 #### Pillar Configuration
 The entire stack configuration is centralized in `pillar/senec.sls`, which defines all key parameters for the infrastructure:
-
+* Infrastructure settings
+  * Terraform.tfvars settings
+  * Servers type, locations, IPs and roles
+  * SSH keys
+  * Network information
+  * Firewall rules
 * Common Settings
   * Mounted volume paths
   * Web server configurations
@@ -488,18 +493,17 @@ dbstatus              | Run queries to check DB cluster status
 ```bash
 export TF_VAR_hcloud_token="your-hetzner-token"
 ```
-Set your domain name in `salt/pillar/senec.sls` under `domain` key and in `.env` file.
+Set your `domain`, `lb_floating_ip` and `ssh_public_keys` name in `salt/pillar/senec.sls`.
 
 Update any other information you want like paths or usernames and passwords.
-
-Set your Hetzner floating IP in `terraform/environments/test/terraform.tfvars` under `lb_floating_ip` key.
-
-Set your puyblic SSH keys in `terraform/environments/test/terraform.tfvars` under `ssh_public_keys`
 
 ## Usage
 
 ### Infrastructure Management
 ```bash
+# Generate terraform.tfplan and .env file
+make gentf
+
 # View planned changes
 make plan
 
