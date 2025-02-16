@@ -25,8 +25,6 @@ This repository contains Infrastructure as Code (IaC) and configuration manageme
 - [Maintenance](#maintenance)
 - [Backup and Recovery](#backup-and-recovery)
 - [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Task Definition
 4 servers should be set up via terraform according to the following settings.
@@ -630,15 +628,4 @@ Backup strategy:
     - MariaDB: 3306, 4567, 4568, 4444
     - GlusterFS: 24007, 24008, 49152-49251
 
-### Performance Issues
-* Slow Website Response
-  * Check server load averages
-  * Monitor MySQL query performance
-  * Review Nginx access/error logs
-  * Verify caching configuration
 
-* Resource Constraints
-  * Monitor CPU usage
-  * Check available memory
-  * Verify disk space usage
-  * Review system logs for bottlenecks
