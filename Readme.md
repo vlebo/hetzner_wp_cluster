@@ -377,8 +377,9 @@ git clone git@github.com:vlebo/hetzner_wp_cluster.git
 make help
 ```
 ```bash
-Available commands: 
+Available commands:
 help                  | Show this help.
+gentf                 | Generate terraform.tfvars file
 plan                  | Run terraform plan
 apply                 | Run terraform apply
 destroy               | Destroy Terraform infrastructure  (asks for confirmation)
@@ -390,6 +391,7 @@ deploy                | Deploy everything
 reboot                | Reboot LB, web1, web2, or web3 (usage: make reboot TARGET=web1)
 service               | Start|Stop|Restart nginx|php8.1-fpm|mariadb on web1|web2|web3 (usage: make service ACTION=stop SERVICE=nginx TARGET=web1)
 dbstatus              | Run queries to check DB cluster status
+ 
 ```
 
 3. Set up environment variables and prerequisites:
