@@ -61,7 +61,7 @@ def write_tfvars(tf_vars, output_path):
 def write_env_file(env_name, domain, ssh_user, output_dir):
     """Generate .env file with terraform directory and domain"""
     env_content = f"""TERRAFORM_DIR=terraform/environments/{env_name}
-DOMAIN={domain}
+REMOTE_HOST={domain}
 SSH_USER={ssh_user}"""
     
     with open('.env', 'w') as f:
