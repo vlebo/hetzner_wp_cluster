@@ -129,15 +129,6 @@ backup_mariadb:
     - require:
       - salt: start_mariadb_service
 
-# Generate SSL cert on LB server
-generate_letsencrypt_cert:
-  salt.state:
-    - tgt: 'LB'
-    - sls:
-      - ssl
-    - require:
-      - salt: start_mariadb_service
-
 # Install and configure HAproxy
 install_and_configure_haproxy:
   salt.state:
@@ -145,7 +136,7 @@ install_and_configure_haproxy:
     - sls:
       - haproxy
     - require:
-      - salt: generate_letsencrypt_cert
+      - salt: backup_mariadb
 
 # Download wordpress
 download_wordpress:

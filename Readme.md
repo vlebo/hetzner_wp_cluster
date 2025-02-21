@@ -396,7 +396,7 @@ dbstatus              | Run queries to check DB cluster status
 ```bash
 export TF_VAR_hcloud_token="your-hetzner-token"
 ```
-Set your `domain`, `lb_floating_ip` and `ssh_public_keys` name in `salt/pillar/senec.sls`.
+Set your `domain`, and `ssh_public_keys` name in `salt/pillar/senec.sls`.
 
 Update any other information you want like paths or usernames and passwords.
 
@@ -414,6 +414,8 @@ make plan
 make apply
 ```
 NOTE: since there is a server upgrade happening and some packages are being installed using cloud-init during initial boot it might take few minutes complete the initial setup.
+
+After servers are up grab `load_balancer_ip` from terraform output and update `REMOTE_HOST` in `.env` file.
 
 ### Configuration Management
 ```bash

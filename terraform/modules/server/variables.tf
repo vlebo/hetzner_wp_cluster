@@ -34,11 +34,6 @@ variable "network_id" {
   type        = string
 }
 
-variable "lb_floating_ip" {
-  description = "Existing Floating IP address for Load Balancer"
-  type        = string
-}
-
 variable "ssh_public_keys" {
   description = "List of SSH public keys"
   type        = list(string)

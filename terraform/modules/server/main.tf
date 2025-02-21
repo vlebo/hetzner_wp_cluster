@@ -1,14 +1,3 @@
-# Fetch all Floating IPs
-data "hcloud_floating_ips" "all_floating_ips" {}
-
-# Find the correct Floating IP by filtering with its known address
-locals {
-  existing_lb_ip = one([
-    for ip in data.hcloud_floating_ips.all_floating_ips.floating_ips :
-    ip if ip.ip_address == var.lb_floating_ip
-  ])
-}
-
 # Register SSH keys in Hetzner Cloud
 resource "hcloud_ssh_key" "my_keys" {
   count      = length(var.ssh_public_keys)
@@ -32,17 +21,9 @@ resource "hcloud_server" "server" {
     ipv4_enabled = var.servers[each.key].role == "lb"
   }
   user_data = templatefile("${path.module}/cloud-init.tpl", {
-    floating_ip  = var.lb_floating_ip
     is_master    = var.servers[each.key].role == "lb" ? "true" : "false"
     master_ip    = var.server_ips["LB"]
   })
-}
-
-# Assign the Floating IP to the LB server
-resource "hcloud_floating_ip_assignment" "assign_lb_ip" {
-  floating_ip_id = local.existing_lb_ip.id
-  server_id      = hcloud_server.server["LB"].id
-  depends_on     = [hcloud_server.server]
 }
 
 resource "hcloud_server_network" "server_network" {
