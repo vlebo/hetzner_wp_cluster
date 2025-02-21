@@ -17,7 +17,6 @@ module "servers" {
   server_type     = var.server_type
   image           = var.image
   location        = var.location
-  lb_floating_ip  = var.lb_floating_ip
   network_id      = module.network.network_id
 }
 
@@ -42,4 +41,17 @@ module "firewall" {
   firewall_name = "test-firewall"
   server_label  = "name=LB"
   firewall_rules = var.firewall_rules
+}
+
+module "loadbalancer" {
+  source           = "../../modules/loadbalancer"
+  hcloud_token     = var.hcloud_token
+  lb_name          = "load-balancer-1"
+  location         = var.location
+  network_id       = module.network.network_id
+  lb_ip           = "10.0.0.10"
+  target_server_id = module.servers.server_ids["LB"]
+  domain_names     = ["wordpress-vl.senecops.com"]
+  private_key_path = "./certs/privkey.pem"
+  certificate_path = "./certs/fullchain.pem"
 }

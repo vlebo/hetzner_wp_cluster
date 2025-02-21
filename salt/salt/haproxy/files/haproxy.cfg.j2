@@ -27,13 +27,8 @@ frontend stats
     stats refresh 10s
     stats admin if LOCALHOST
 
-frontend http
+frontend http_front
     bind *:80
-    redirect scheme https if !{ ssl_fc }
-
-frontend https_front
-    bind *:443 ssl crt /etc/haproxy/{{ domain }}.pem
-    http-request set-header X-Forwarded-Proto https if { ssl_fc }
     default_backend web_backend
 
 backend web_backend

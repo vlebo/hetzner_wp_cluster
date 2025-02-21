@@ -18,23 +18,7 @@ write_files:
     owner: root:root
     permissions: '0644'
 
-  - path: /etc/netplan/99-floating-ip.yaml
-    content: |
-      network:
-        version: 2
-        renderer: networkd
-        ethernets:
-          eth0:
-            addresses:
-              - ${floating_ip}/32
-    owner: root:root
-    permissions: '0600'
-    append: false
-
 runcmd:
-  # Apply Netplan only if this is the Master (LB), otherwise remove it
-  - ["sh", "-c", "grep -q 'true' /root/is_master && netplan apply || rm -f /etc/netplan/99-floating-ip.yaml"]
-
   # Secure SSH: Disable password authentication
   - ["sh", "-c", "echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config"]
   - ["sh", "-c", "echo 'PermitRootLogin prohibit-password' >> /etc/ssh/sshd_config"]
@@ -61,9 +45,3 @@ runcmd:
   - ["sh", "-c", "grep -q 'true' /root/is_master && mkdir -p /srv/salt /srv/pillar"]
   - ["sh", "-c", "grep -q 'true' /root/is_master && echo 'auto_accept: True' >> /etc/salt/master"]
   - ["sh", "-c", "grep -q 'true' /root/is_master && systemctl restart salt-master"]
-
-  # Wait for Minions to register
-  - sleep 10
-
-  # Run Highstate on ALL servers
-  - salt-call state.apply

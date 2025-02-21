@@ -12,3 +12,11 @@ output "server_labels" {
   description = "Map of server names to their labels"
   value       = { for k, v in hcloud_server.server : k => v.labels }
 }
+
+output "lb_public_ipv4" {
+  description = "Public IPv4 address of the load balancer server"
+  value = try(
+    hcloud_server.server["LB"].ipv4_address,
+    null
+  )
+}

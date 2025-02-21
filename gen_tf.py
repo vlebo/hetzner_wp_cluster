@@ -21,7 +21,6 @@ def generate_tfvars(pillar_data):
         'location': infra['location'],
         'volume_size': infra['volume_size'],
         'image': infra['image'],
-        'lb_floating_ip': infra['lb_floating_ip'],
         'network_name': infra['network_name'],
         'network_cidr': infra['network_cidr'],
         'ssh_public_keys': infra['ssh_public_keys'],
@@ -58,10 +57,10 @@ def write_tfvars(tf_vars, output_path):
             else:
                 f.write(f'{key} = "{value}"\n')
 
-def write_env_file(env_name, domain, ssh_user, output_dir):
-    """Generate .env file with terraform directory and domain"""
+def write_env_file(env_name, lb_server_ip, ssh_user, output_dir):
+    """Generate .env file with terraform directory and lb_server_ip"""
     env_content = f"""TERRAFORM_DIR=terraform/environments/{env_name}
-REMOTE_HOST={domain}
+REMOTE_HOST={lb_server_ip}
 SSH_USER={ssh_user}"""
     
     with open('.env', 'w') as f:
@@ -85,7 +84,7 @@ def main():
         # Get environment from pillar
         env = pillar_data['senec']['env']
         ssh_user = pillar_data['senec']['ssh_user']
-        domain = pillar_data['senec']['common']['domain']
+        lb_server_ip = pillar_data['senec']['infrastructure']['lb_server_ip']
         
         # Create output directory
         output_dir = Path(f"terraform/environments/{env}")
@@ -98,7 +97,7 @@ def main():
         print(f"Successfully generated {output_path}")
         
         # Generate .env file
-        write_env_file(env, domain, ssh_user, output_dir)
+        write_env_file(env, lb_server_ip, ssh_user, output_dir)
         print("Successfully generated .env file")
         
     except Exception as e:

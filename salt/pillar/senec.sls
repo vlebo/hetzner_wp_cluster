@@ -6,7 +6,7 @@ senec:
     location: nbg1
     volume_size: 10
     image: ubuntu-22.04
-    lb_floating_ip: 94.130.190.87
+    lb_server_ip: PLACEHOLER_FOR_LB_IP
     network_name: test-network
     network_cidr: 10.0.0.0/24
     ssh_public_keys:
@@ -44,7 +44,8 @@ senec:
     web_user: www-data
     web_servers: ['web1', 'web2', 'web3']
     domain: wordpress-vl.senecops.com
-    email: admin@mywebsite.com
+#    domain: wp.fpng.in
+    email: admin@senecops.com
   gluster:
     client_pkg: glusterfs-client
     server_pkg: glusterfs-server
@@ -57,9 +58,9 @@ senec:
     db_servers: ['web1', 'web2', 'web3']
     pkg_name: mariadb-server
     service_name: mariadb
-    root_password: "SuperSecureRootPassword123!"
+    root_password: "SANITIZED"
     senec_root_user: senec_root
-    senec_root_password: "SuperSecureRootPassword123!"
+    senec_root_password: "SANITIZED"
     backup_dir: /var/backups/wordpress
   wordpress:
     install_dir: /var/www/senec
@@ -71,5 +72,5 @@ senec:
     db_host: "LB"
     db_port: 3306
     admin_user: senec_admin
-    admin_password: StrongPassword123
-    admin_email: admin@example.com
+    admin_password: "SANITIZED"
+    admin_email: admin@senecops.com
